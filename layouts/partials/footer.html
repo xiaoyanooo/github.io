@@ -1,0 +1,161 @@
+<script async src="//yihui.name/js/center-img.js"></script>
+<style>
+  .contact_h,.shangwu,.lianxi,.zhezaho{text-align: center}
+  .contact_h p{margin-top: 6rem}
+  .contact_h h3{color: #0071bc;font-size: 2rem;}
+  .contact_h p span{    padding:0rem 2rem;cursor: pointer;}
+  .contact_h p span:hover{color:#0071bc }
+  .shangwu p{color:#959595;font-size: 1rem;margin-top: 2rem;margin-bottom: 2rem}
+  .color{color:#0071bc}
+  .lianxi_b{color:#0071bc;font-weight: 500;}
+  .lianxi_b span{ margin-right: 17rem;cursor: pointer}
+  .tanchuang span{color:#0071bc;font-weight: 500;font-size:1.25rem ;display: block;margin-top: 1rem;}
+  .tanchuang{display: none;border-radius: 5px;text-align: center;position: fixed;z-index: 12;bottom:-11px;height: 570px;width: 100%;background: #fff}
+  .tanchuang_c{background: #f0f0f0;display: inline-block;width: 80%;border-radius: 1rem;}
+  .tanchuang_c div{display: inline-block}
+  .tanchuang_c_h{font-size: 1rem;margin: 1rem 0rem 2rem 0rem}
+  .tanchuang_c_l p label,.tanchuang_c_r p label{font-size: 1rem;margin-right: 2rem;float: left}
+  .tanchuang_c_l{float: left;margin-left: 5rem}
+  .tanchuang_c_r{float:right;margin-right: 5rem}
+  .tanchuang_c_l p input,.tanchuang_c_r p input{ width: 16rem;border: none;outline:none;font-size: 0.5rem;padding:0rem 0.5rem;height: 1.5rem;float: left;margin-bottom: 3rem;}
+  textarea{width: 16rem; border: none;outline:none;height: 5rem;resize: none;font-size: 0.5rem;padding: 0.5rem}
+  .zhezhao{display: none;width: 100%;height:158%;;background: rgba(240, 240, 240, 0.45);position: fixed;z-index: 11;    margin-top: -100px;}
+  .send:hover{background: #409cd9 !important;}
+</style>
+<footer style="background: #fff;padding-top: 5rem">
+{{ partial "foot_custom.html" . }}
+
+  <div id='contact_h' class="contact_h">
+    <h3 style="padding-top:2rem" id="contact">联系-我们</h3>
+    <p><span onclick="curr2(this)" data-index="0" class="curr2 tab" style="border-right: 1px solid #ccc;">商务合作</span><span data-index="1" class="tab" onclick="curr2(this)">加入我们</span></p>
+  </div>
+  <div class="shangwu curr3 tab2" style="margin-bottom: 6rem;display: none">
+    <p>联络我们</p>
+    <p>PerfXLab澎峰科技期待与您合作</p>
+    <p>Discovering Potential. Driving Performance</p>
+    <p>地址：北京市海淀区知春路7号北航致真大夏A座1602（北京航空航天大学东南角）</p>
+    <p>邮编：100191</p>
+            <span style="font-size: 1.1rem;
+    color: #000;">邮箱：info@perfxlab.com</span>
+  </div>
+  <div class="lianxi tab2" style="display: none;">
+    <p style="color:#959595;font-size: 1rem;margin-top:6rem;margin-bottom: 6rem">欢迎加入，正在招聘的职位</p>
+    <p  class="lianxi_b"><span onclick="curr3(this)" class="tab3">HPC高性能计算</span><span onclick="curr3(this)" class="tab3">FPGA工程师</span><span onclick="curr3(this)" class="tab3" style="margin-right: 0px">计算机视觉工程师</span></p>
+    <p style="color:#333;font-size: 1rem;margin-top:7rem;margin-bottom: 4rem">或直接投递简历到：jops@perfxlab.com</p>
+  </div>
+  <div style="text-align: center" class="tanchuang" id="tanchuang">
+    <b id="cha" onclick="del(this)"  style="font-size: 5rem;
+    font-weight: 0;
+    margin-top: 1rem;
+    display: inline-block;
+    float: right;margin-right: 30px;cursor: pointer">×</b>
+    <span style="margin-left: 5rem;margin-bottom: 2rem;margin-top: 1rem">HPC高性能计算</span>
+    <form name="frmEmailOutLook" action="" method="post" enctype="text/plain">
+      <input type="hidden" name="message" value="">
+    </form>
+    <form name="frmEmail" action="" method="post">
+      <div class="tanchuang_c">
+        <p class="tanchuang_c_h">简历投递</p>
+        <p class="tanchuang_c_h">职位详情</p>
+        <div class="tanchuang_c_l">
+          <p><label>姓名</label><input type="text" name="name" /></p>
+          <p><label>邮箱</label><input type="text" name="email" /></p>
+          <p><label>简历&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp请点击确认投递之后上传附件</label></p>
+        </div>
+        <div class="tanchuang_c_r">
+          <p><label>手机</label><input type="text" name="phone" /></p>
+          <p><label>备注</label><textarea type="text" name="mark" ></textarea></p>
+        </div>
+        <input type="button" name="send" onClick="toOutLook()" class="send" style="background:#0071bc;padding: 0rem 1.5rem;font-size: 1.1rem;color:#fff;display: inline-block;border-radius: 0.3rem;line-height: 2.5rem;margin-bottom: 2rem;cursor: pointer
+                 ;border:none;margin-top: 15rem" value="确认投递">
+        <a href="mailto" id="send"></a>
+      </div>
+    </form>
+  </div>
+
+  <div style="background: #333333;color:#888;height: 4rem;line-height: 4rem" class="footer">
+    © 2017  BY  MOMENTA
+  </div>
+</footer>
+
+{{ if and (not .Params.disable_mathjax) (or (in (string .Content) "\\") (in (string .Content) "$")) }}
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+{{ end }}
+
+{{ if and (not .Params.disable_highlight) (in (string .Content) "</pre>") }}
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/r.min.js"></script>
+<script>
+hljs.configure({languages: []});
+hljs.initHighlightingOnLoad();
+</script>
+{{ end }}
+
+{{ template "_internal/google_analytics.html" . }}
+
+</body>
+</html>
+<script>
+  function del(obj){
+    var zhezhao=document.getElementById('zhezhao')
+    zhezhao.style.setProperty('display', 'none');
+    document.getElementById('tanchuang').setAttribute('style', 'display: none !important');
+  }
+
+  function curr3(obj){
+    var zhezhao=document.getElementById('zhezhao')
+    zhezhao.style.setProperty('display', 'block');
+    document.getElementById('tanchuang').setAttribute('style', 'display: block !important');
+  }
+  function curr2(obj){
+    var len=document.getElementsByClassName('tab').length;
+    var nav=document.getElementsByClassName('tab');
+    var post=document.getElementsByClassName('tab');
+    var arr=document.getElementsByClassName('tab2');
+    var post_len=post.length;
+    for(var i=0;i<len;i++){
+      console.log(nav[i]);
+      nav[i].classList.remove('curr2');
+      nav[i].index=i;
+      arr[i].classList.remove('curr3');
+    }
+    var index=obj.getAttribute('data-index')
+    obj.classList.add('curr2');
+    arr[index].classList.add('curr3');
+  }
+  function toOutLook(){
+    var objFrm = document.frmEmail;
+    var objFrmOutLook = document.frmEmailOutLook;
+    if(!objFrm.name.value){
+      alert("请填写姓名");
+      return false;
+    }
+    if(!objFrm.name.value){
+      alert("请填写邮箱");
+      return false;
+    }
+    if(!objFrm.name.value){
+      alert("请填写手机");
+      return false;
+    }
+    if(!objFrm.name.value){
+      alert("请填写姓名");
+      return false;
+    }
+    var send = document.getElementById('send');
+    var body = "";
+    body += "姓名: " + objFrm.name.value + "%0a%0d";
+    body += "邮箱: " + objFrm.email.value + "%0a%0d";
+//        body += "简历: " + objFrm.jianli.value + "%0a%0d";
+    body += "手机: " + objFrm.phone.value + "%0a%0d";
+    body += "备注: " + objFrm.mark.value + "%0a%0d";
+//        getElementById("send").attr("href","mailto:" + objFrm.email.value + "?body="+body);
+    send.href="mailto:jops@perfxlab.com?body="+body;
+    document.getElementById("send").click();
+//        objFrmOutLook.message.value = msg;
+//        objFrmOutLook.action = "mailto:" + objFrm.email.value + "?subject=简历";
+//        objFrmOutLook.submit();
+  }
+
+</script>

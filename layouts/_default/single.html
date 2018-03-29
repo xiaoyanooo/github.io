@@ -1,0 +1,21 @@
+{{ partial "header.html" . }}
+<div class="container">
+<article>
+
+
+{{ if .Params.toc }}
+{{ .TableOfContents }}
+{{ end }}
+
+<main>
+{{ .Content }}
+</main>
+
+{{ partial "author.html" . }}
+{{ partial "info.html" . }}
+{{ partial "prev_next.html" . }}
+{{ partial "comments.html" . }}
+</article>
+</div>
+
+{{ partial "footer.html" . }}
