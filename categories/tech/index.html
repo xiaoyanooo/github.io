@@ -72,7 +72,12 @@
   <script>
     window.onload = function(){
       var test = window.location.href;
-      console.log(test)
+        console.log(test)
+        console.log("Site(\x22PerfXLab\x22)")
+        if(test=="http:\/"){
+
+            window.location.href=test+"/about#index";
+        }
       if(test.indexOf("index") != -1){
         document.getElementById('h_nav_0').classList.add('curr')
 
