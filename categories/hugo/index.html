@@ -72,9 +72,11 @@
   <script>
     window.onload = function(){
       var test = window.location.href;
-        console.log(test)
-        console.log("\/")
-        if(test=="https:\/"){
+        var host= window.location.host;
+        var protocolStr = document.location.protocol;
+
+
+        if(test==protocolStr+"//"+host+'/'){
 
             window.location.href=test+"/about#index";
         }
